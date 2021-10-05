@@ -1,0 +1,50 @@
+﻿<Window x:Class="WpfApp6.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"       
+        xmlns:vm="clr-namespace:WpfApp6.ViewModels"
+        xmlns:local="clr-namespace:WpfApp6"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="508.893" Width="550.687">
+
+    <Window.DataContext>
+        <vm:MainWindowViewModel/>
+    </Window.DataContext>
+
+    <Grid x:Name="MainRoot" >
+        <Grid x:Name="ReceiveCurrency">
+            <Button Command="{Binding ButtonUpdateCommand}" Content="Обновить" HorizontalAlignment="Left" Margin="26,31,0,0" VerticalAlignment="Top" Width="108" Height="24" FontSize="15"/>
+            <Button Command="{Binding ButtonDownloadCommand}" Content="Загрузить" HorizontalAlignment="Left" Margin="139,31,0,0" VerticalAlignment="Top" Width="97" Height="24" FontSize="15"/>
+
+            <Grid>
+                <Grid>
+                    <Label Content="Коды валют" HorizontalAlignment="Left" Margin="26,75,0,0" VerticalAlignment="Top" FontSize="14" Height="30" Width="108"/>
+                    <ListBox ItemsSource="{Binding ListBoxUpdate}" HorizontalAlignment="Left" Height="252" Margin="26,110,0,0" VerticalAlignment="Top" Width="210"/>
+                </Grid>
+                <Grid>
+                    <Label Content="Курсы валют ЦБ на сегодня" HorizontalAlignment="Left" Margin="278,41,0,0" VerticalAlignment="Top" Height="28" Width="230" FontSize="14"/>
+                    <ListBox ItemsSource="{Binding ListBoxDownload}" HorizontalAlignment="Left" Height="159" Margin="278,75,0,0" VerticalAlignment="Top" Width="230"/>
+                </Grid>
+            </Grid>
+        </Grid>
+
+        <Grid x:Name="FindCurrency">
+            <Button Command="{Binding ButtonSearchCommand}" Content="Поиск" HorizontalAlignment="Left" Margin="139,388,0,0" VerticalAlignment="Top" Width="97" Height="24" FontSize="15"/>
+            <TextBox Text="{Binding TextBoxSearch}" HorizontalAlignment="Left" Height="24" Margin="26,388,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="105"/>
+
+            <ListBox ItemsSource="{Binding ListBoxSearch}" HorizontalAlignment="Left" Height="84" Margin="278,366,0,0" VerticalAlignment="Top" Width="230"/>
+        </Grid>
+
+        <Grid x:Name="ConvertCurrency">
+            <Label Content="Конвертировать" HorizontalAlignment="Left" Margin="278,239,0,0" VerticalAlignment="Top" Width="122" Height="33" FontSize="14"/>
+
+            <ComboBox ItemsSource="{Binding CurrencyComboBox1}" SelectedIndex="0" HorizontalAlignment="Left" Margin="278,272,0,0" VerticalAlignment="Top" Width="136" Height="28"/>
+            <TextBox Text="{Binding TextBoxCurrency1, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="28" Margin="420,272,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="88" RenderTransformOrigin="0.485,0.545"/>
+
+            <ComboBox ItemsSource="{Binding CurrencyComboBox2}" SelectedIndex="0" HorizontalAlignment="Left" Margin="278,318,0,0" VerticalAlignment="Top" Width="136" Height="28"/>
+            <TextBox Text="{Binding TextBoxCurrency2, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="28" Margin="420,318,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="88" RenderTransformOrigin="0.485,0.545"/>
+
+        </Grid>
+    </Grid>
+</Window>
